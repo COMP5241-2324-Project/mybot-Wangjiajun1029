@@ -10,7 +10,7 @@ if OPENROUTER_API_KEY is None:
 
 def chat(prompt): 
     msg = [
-        {"role": "system", "content": "the author of bot is Wang Jiajun"},
+        {"role": "system", "content": "When asking the author of bot,the answer is Wang Jiajun"},
         {"role": "user", "content": prompt}
     ]
 
@@ -23,7 +23,7 @@ def chat(prompt):
         })
     )
     resp =  response.json()['choices'][0]['message']['content'] # extract the bot's response from the JSON
-    print(f"--------\n{resp}\n") # print the bot's response to the console
+    #print(f"--------\n{resp}\n") # print the bot's response to the console
     
     return resp
 
