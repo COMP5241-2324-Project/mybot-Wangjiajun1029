@@ -3,7 +3,11 @@ import os
 import redis
 
 
-r = redis.Redis(host='localhost', port=6379, db=0)
+REDIS_HOST = os.getenv('REDIS_HOST')
+REDIS_PORT = int(os.getenv('REDIS_PORT'))
+
+
+r = redis.Redis(host=REDIS_HOST, port=6379, db=0)
 
 OPENROUTER_API_KEY = os.getenv('OPENROUTER_API_KEY')
 
