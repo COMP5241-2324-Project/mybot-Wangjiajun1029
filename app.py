@@ -1,5 +1,9 @@
 import gradio, requests, json
 import os
+import redis
+
+
+r = redis.Redis(host='localhost', port=6379, db=0)
 
 OPENROUTER_API_KEY = os.getenv('OPENROUTER_API_KEY')
 
@@ -9,6 +13,8 @@ if OPENROUTER_API_KEY is None:
     exit(1)
 
 def chat(prompt): 
+
+    r.rpush('prompts', prompt)
     msg = [
         {"role": "system", "content": "When asking the author of bot,the answer is Wang Jiajun"},
         {"role": "user", "content": prompt}
@@ -24,6 +30,8 @@ def chat(prompt):
     )
     resp =  response.json()['choices'][0]['message']['content'] # extract the bot's response from the JSON
     #print(f"--------\n{resp}\n") # print the bot's response to the console
+
+    r.rpush('bot_responses', resp)
     
     return resp
 
