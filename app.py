@@ -2,7 +2,7 @@ import gradio, requests, json
 import os
 
 OPENROUTER_API_KEY = os.getenv('OPENROUTER_API_KEY')
- 
+
 
 if OPENROUTER_API_KEY is None:
     print("Please set the OPENROUTER_API_KEY")
@@ -10,7 +10,7 @@ if OPENROUTER_API_KEY is None:
 
 def chat(prompt): 
     msg = [
-        {"role": "system", "content": "Answer questions related to Software Engineering in funny tone with Emoji"},
+        {"role": "system", "content": "the author of bot is Wang Jiajun"},
         {"role": "user", "content": prompt}
     ]
 
